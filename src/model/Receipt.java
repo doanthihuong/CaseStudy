@@ -2,7 +2,7 @@ package model;
 
 public class Receipt {//borrowed time : thời gian thuê
     // pay time :  thời gian trả
-    private String identity;
+    private int identity;
     private String name;
     private double borrowedTime;
     private double payTime;
@@ -11,7 +11,7 @@ public class Receipt {//borrowed time : thời gian thuê
     public Receipt() {
     }
 
-    public Receipt(String identity, String name, double borrowedTime,double payTime, Bicycle bicycle) {
+    public Receipt(int identity, String name, double borrowedTime,double payTime, Bicycle bicycle) {
         this.identity = identity;
         this.name = name;
         this.borrowedTime = borrowedTime;
@@ -19,11 +19,11 @@ public class Receipt {//borrowed time : thời gian thuê
         this.bicycle = bicycle;
     }
 
-    public String getIdentity() {
+    public int getIdentity() {
         return identity;
     }
 
-    public void setIdentity(String identity) {
+    public void setIdentity(int identity) {
         this.identity = identity;
     }
 

@@ -60,11 +60,8 @@ public class Bicycle {  //License plate: biển số
 
     @Override
     public String toString() {
-        return "Bicycle: " +
-                "id: " + id +
-                ", licensePlate: " + licensePlate +
-                ", color: " + color +
-                ", status: " + status +
-                ", rentCost: " + rentCost ;
+        System.out.printf("\"| %-10s| %-10s| %-10s| %-10s| %-10s|\n\"", "ID", "BIỂN SỐ", " MÀU SẮC", "TRẠNG THÁI", "GIÁ/GIỜ");
+        System.out.println("-------------------------------------------------------------");
+        return String.format("\"| %-10s| %-10s| %-10s| %-10s| %-10s|\n\"",id, licensePlate,color,status,rentCost);
     }
 }

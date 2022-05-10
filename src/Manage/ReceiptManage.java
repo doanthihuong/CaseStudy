@@ -33,16 +33,10 @@ public class ReceiptManage {
         System.out.println("Bạn đã thêm thành công 1 hóa đơn mới" );
     }
     public void editReceipt(String identity,Receipt receipt){
-        int index = findIndexById(identity);
-        if(index == -1) {
-            System.out.println("Không có số CMND nào phù hợp");
-        } else {
-            receiptList.set(index,receipt);
-            System.out.println(" Bạn đã sửa thành công hóa đơn");
-        }
+
     }
 
-    public void deleteReceipt(String identity){
+    public void deleteReceipt(int identity){
         int index = findIndexById(identity);
         if(index == -1) {
             System.out.println("Không có số CMND nào phù hợp");
@@ -69,10 +63,10 @@ public class ReceiptManage {
 
     }
 
-    public void findIdentity(String identity) {
+    public void findIdentity(int identity) {
         boolean check = false;
         for (int i = 0; i < receiptList.size(); i++) {
-            if(receiptList.get(i).getIdentity().equals(identity)) {
+            if(receiptList.get(i).getIdentity()==identity) {
                 System.out.println(receiptList.get(i));
                 check=true;
             }
@@ -81,10 +75,9 @@ public class ReceiptManage {
             System.out.println("Không Id này trong danh sách");
         }
     }
-    //Tìm vị trí index
-    public int findIndexById(String identity) {
+    public int findIndexById(int identity) {
         for (int i = 0; i < receiptList.size(); i++) {
-            if(receiptList.get(i).getIdentity().equals(identity)) {
+            if(receiptList.get(i).getIdentity()==identity) {
                 return i;
             }
         }
@@ -92,6 +85,7 @@ public class ReceiptManage {
 
     }
     public void displayMenu(){
+        System.out.println("<>.<>.<>.<>.<>.<>.\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38さくら株 式 会 社\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38<>.<>.<>.<>.<>");
         System.out.println ("*=*=*=*=*=*=*=*=*=*=*=*Menu Hóa Đơn=*=*=*=*=*=*=*=*=*=*=*");
         System.out.println ("*-1 - Hiển thị danh sách hóa đơn                       =*");
         System.out.println ("*-2 - Thêm hóa đơn                                     =*");
