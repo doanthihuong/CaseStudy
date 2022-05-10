@@ -41,6 +41,7 @@ public class ReceiptManage {
             System.out.println(" Bạn đã sửa thành công hóa đơn");
         }
     }
+
     public void deleteReceipt(String identity){
         int index = findIndexById(identity);
         if(index == -1) {
