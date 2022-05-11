@@ -48,7 +48,7 @@ public class WriteReadToFile {
         PrintWriter printWriter1 = new PrintWriter(file1);
         String str = "Identity,Tên,Thời gian mượn,Thời gian trả,Giá Thuê/giờ ,ID Xe t";
         for (Receipt i:receiptList) {
-            str+= i.getIdentity()+","+i.getName()+i.getBorrowedTime()+i.getPayTime()+ i.getBicycle().getId();
+            str+= i.getIdentity()+","+i.getName()+","+i.getBorrowedTime()+","+i.getPayTime()+","+ i.getBicycle().getId();
         }
         printWriter1.write(str);
         printWriter1.close();

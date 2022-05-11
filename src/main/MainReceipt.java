@@ -23,7 +23,7 @@ public class MainReceipt {
 
                 try {
                     choice = sc.nextInt();
-                    sc.nextLine();
+//                    sc.nextLine();
                 } catch (Exception e) {
                     System.out.println("ERROR.... chỉ nhập số");
                     sc.nextLine();
@@ -52,8 +52,9 @@ public class MainReceipt {
                         }
                     }
                         System.out.println(" Nhập họ tên của khách thuê xe");
-                        String name = sc.nextLine();
                         sc.nextLine();
+                        String name = sc.nextLine();
+
                         double borrowedTime = -1;
                         check = false;
                         while (!check) {

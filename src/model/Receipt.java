@@ -63,7 +63,7 @@ public class Receipt {//borrowed time : thời gian thuê
     public String toString() {
         System.out.printf("\"| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s|\n\"","Số CMND","Tên","Tg MƯỢN","Tg TRẢ","ID XE","BIỂN SỐ","GIÁ/GIỜ");
         System.out.println("-------------------------------------------------------------");
-        return String.format("\"| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s|\n\"",identity, name,borrowedTime,payTime,bicycle.getId(),bicycle.getLicensePlate(),bicycle.getRentCost());
+        return String.format("\"| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s|\n\"",identity,name,borrowedTime,payTime,bicycle.getId(),bicycle.getLicensePlate(),bicycle.getRentCost());
     }
 
 }
