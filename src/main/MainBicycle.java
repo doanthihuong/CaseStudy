@@ -5,11 +5,12 @@ import model.Bicycle;
 
 import javax.jws.soap.SOAPBinding;
 import javax.sound.midi.Soundbank;
+import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MainBicycle {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 
         BicycleManage bicycleManage = new BicycleManage();
         try (Scanner sc = new Scanner(System.in)) {
@@ -24,7 +25,7 @@ public class MainBicycle {
                         choice = sc.nextInt();
                         sc.nextLine();
                     } catch (Exception e) {
-                        System.out.println(" chỉ nhập số");
+                        System.out.println(" Chỉ nhập số");
                         sc.nextLine();
                         choice = -1;
                     }
@@ -32,41 +33,42 @@ public class MainBicycle {
 
                 switch (choice) {
                     case 1:
+//                        System.out.println("\uD83C\uDD98"); sos
                         System.out.println("\uD83C\uDF38 \uD83C\uDF38さくら 株 式 会 社\uD83C\uDF38 \uD83C\uDF38");
                         bicycleManage.display();
                         System.out.println("------------------------THÊM THÀNH CÔNG-----------------------");
-                        System.out.println(" Mời nhập lựa chọn của bạn");
+                        System.out.println(" \uD83D\uDC49Mời nhập lựa chọn của bạn");
                         break;
                     case 2:
-                        System.out.println(" Nhâp thông tin xe ");
+                        System.out.println("\uD83D\uDC49 Nhâp thông tin xe ");
                         int id = -1;
                         check = false;
                         while (!check) {
-                            System.out.println(" Nhập ID xe ");
+                            System.out.println(" \uD83D\uDC49 Nhập ID xe ");
                             try {
                                 id = sc.nextInt();
 
                                 check = true;
                             } catch (Exception e) {
-                                System.out.println(" ERROR!chỉ được nhập số !");
+                                System.out.println(" \uD83C\uDD98 ERROR!chỉ được nhập số !");
                                 sc.nextLine();
                             }
                         }
                         sc.nextLine();
-                        System.out.println(" Nhập biển số xe");
+                        System.out.println(" \uD83D\uDC49 Nhập biển số xe");
                         String licensePlate = sc.nextLine();
                         System.out.println(" nhập màu xe");
                         String color = sc.nextLine();
-                        System.out.println(" nhập trạng thái xe:\n1. SẴN SÀNG\t\t\t2. KHÔNG PHẢI BÂY GIỜ");
+                        System.out.println(" \uD83D\uDC49 nhập trạng thái xe:\n1. SẴN SÀNG\t\t\t2. KHÔNG PHẢI BÂY GIỜ");
                         String status = "";
                         int choice1 = -1;
                         check = false;
                         do {
-                            System.out.println("Chọn trạng thái 1 hoặc 2: ");
+                            System.out.println("\uD83D\uDC49 Chọn trạng thái 1 hoặc 2: ");
                             try {
                                 choice1 = sc.nextInt();
                             } catch (InputMismatchException e) {
-                                System.out.println(" Vui lòng chỉ nhập số");
+                                System.out.println("\uD83D\uDC49 Vui lòng chỉ nhập số");
                                 sc.nextLine();
                             }
                             if (choice1 == 1) {
@@ -87,7 +89,7 @@ public class MainBicycle {
                                 rentCost = sc.nextInt();
                                 check = true;
                             } catch (Exception e) {
-                                System.out.println("SOS.. chỉ được nhập số !");
+                                System.out.println("\uD83C\uDD98 chỉ được nhập số !");
                                 sc.nextLine();
                             }
                         }
@@ -105,7 +107,7 @@ public class MainBicycle {
                                 id1 = sc.nextInt();
                                 check = true;
                             } catch (Exception e) {
-                                System.out.println(" ERROR ===>  chỉ được nhập số !");
+                                System.out.println("\uD83C\uDD98  chỉ được nhập số !");
                                 sc.nextLine();
                             }
                         }
@@ -125,7 +127,7 @@ public class MainBicycle {
                             try {
                                 choice2 = sc.nextInt();
                             } catch (InputMismatchException e) {
-                                System.out.println(" Vui lòng chỉ nhập số");
+                                System.out.println("\uD83C\uDD98 Chỉ nhập số");
                                 sc.nextLine();
                             }
                             if (choice2 == 1) {
@@ -144,24 +146,24 @@ public class MainBicycle {
                                 rentCost1 = sc.nextInt();
                                 check = true;
                             } catch (Exception e) {
-                                System.out.println("SOS.. chỉ được nhập số !");
+                                System.out.println("\uD83C\uDD98 chỉ được nhập số !");
                                 sc.nextLine();
                             }
                         }
                         Bicycle bicycle1 = new Bicycle(id, licensePlate, color, status1, rentCost1);
                         bicycleManage.edit(id1, bicycle1);
-                        System.out.println("nhập lựa chọn tiếp theo của bạn");
+                        System.out.println("\uD83C\uDD98 Nhập lựa chọn tiếp theo của bạn");
                         break;
                     case 4:
                         int id2 = -1;
                         check = false;
                         while (!check) {
-                            System.out.println(" nhập id xe muốn xóa");
+                            System.out.println(" Nhập id xe muốn xóa");
                             try {
                                 id2 = sc.nextInt();
                                 check = true;
                             } catch (Exception e) {
-                                System.out.println(" SOS!chỉ được nhập số !");
+                                System.out.println(" \uD83C\uDD98 chỉ được nhập số !");
                                 sc.nextLine();
                             }
                         }
@@ -201,19 +203,22 @@ public class MainBicycle {
                         break;
                     case 7:
                         System.out.println(" Tính năng đang được hệ thống bảo trì");
+                        System.out.print("Nhập vào Id xe cần update: ");
+                        int idOfUpdate = sc.nextInt();
+                        bicycleManage.busyToEmpty(idOfUpdate);
                         break;
                     case 8:
                         int id4 = -1;
                         check = false;
                         while (!check) {
-                            System.out.println(" nhập id xe muốn tìm");
+                            System.out.println(" Nhập id xe muốn tìm");
                             try {
                                 id4 = sc.nextInt();
                                 check = true;
                                 bicycleManage.findById(id4);
-                                System.out.println("nhập lựa chọn tiếp theo của bạn");
+                                System.out.println("Nhập lựa chọn tiếp theo của bạn");
                             } catch (Exception e) {
-                                System.out.println("ERROR ==>>>>>>> chỉ được nhập số");
+                                System.out.println("\uD83C\uDD98 chỉ được nhập số");
                                 sc.nextLine();
                             }
                         }
@@ -229,7 +234,7 @@ public class MainBicycle {
                                 check = true;
                                 bicycleManage.findByRentCost(String.valueOf(cost));
                             } catch (Exception e) {
-                                System.out.println(" ERROR .....  vui lòng nhập số");
+                                System.out.println(" \uD83C\uDD98 vui lòng nhập số");
                             }
                         }
 
@@ -241,13 +246,19 @@ public class MainBicycle {
                         System.out.println("Nhập lựa chọn tiếp theo của bạn");
                         break;
                     case 11:
+                        bicycleManage.displayMenuReceipt();
+                        System.out.println(" SORRY! updating");
+                        System.out.println("--------------------------------------------------------");
+                        System.out.println("PLEASE, COMING SOON !!!  ");
+                        break;
+                    case 12:
                         System.out.println("さよなら..まった。。会いましょう　\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A");
                         System.exit(0);
 
                         break;
 
                 }
-            } while (choice >= 1 && choice <= 11);
+            } while (choice >= 1 && choice <= 12);
         }
     }
 }

@@ -7,9 +7,15 @@ import java.util.List;
 
 public class ReceiptManage {
     List<Receipt> receiptList = new ArrayList<>();
-    //Thêm thuộc tính số hóa đơn
+
     private int receiptNumber = 0;
-    public ReceiptManage(){
+
+    //    public ReceiptManage() throws FileNotFoundException {
+//        receiptList = WriteReadToFile.("src\\receipt-Manage.csv",receiptList);
+//    }
+    public ReceiptManage() {
+        this.receiptList = receiptList;
+        this.receiptNumber = receiptNumber;
     }
 
     public List<Receipt> getReceiptList() {
@@ -27,18 +33,20 @@ public class ReceiptManage {
     public void setReceiptNumber(int receiptNumber) {
         this.receiptNumber = receiptNumber;
     }
+
     public void addReceipt(Receipt receipt) {
         receiptList.add(receipt);
         receiptNumber++;
-        System.out.println("Bạn đã thêm thành công 1 hóa đơn mới" );
+        System.out.println( "Bạn đã thêm thành công 1 hóa đơn mới" );
     }
-    public void editReceipt(String identity,Receipt receipt){
+
+    public void editReceipt(String identity, Receipt receipt) {
 
     }
 
-    public void deleteReceipt(int identity){
+    public void deleteReceipt(int identity) {
         int index = findIndexById(identity);
-        if(index == -1) {
+        if (index == -1) {
             System.out.println("Không có số CMND nào phù hợp");
         } else {
             receiptList.remove(index);
@@ -46,10 +54,11 @@ public class ReceiptManage {
         }
 
     }
-    public void displayFull(){
-        int receiptNumber=0;
+
+    public void displayFull() {
+        int receiptNumber = 0;
         boolean check = false;
-        for (int i=0; i<receiptList.size(); i++) {
+        for (int i = 0; i < receiptList.size(); i++) {
             System.out.println(receiptList.get(i));
             receiptNumber++;
             System.out.println("Số hóa đơn thứ: " + receiptNumber);
@@ -66,25 +75,39 @@ public class ReceiptManage {
     public void findIdentity(int identity) {
         boolean check = false;
         for (int i = 0; i < receiptList.size(); i++) {
-            if(receiptList.get(i).getIdentity()==identity) {
+            if (receiptList.get(i).getIdentity() == identity) {
                 System.out.println(receiptList.get(i));
-                check=true;
+                check = true;
             }
         }
-        if(check==false){
+        if (check == false) {
             System.out.println("Không Id này trong danh sách");
         }
     }
+
+
     public int findIndexById(int identity) {
         for (int i = 0; i < receiptList.size(); i++) {
-            if(receiptList.get(i).getIdentity()==identity) {
+            if (receiptList.get(i).getIdentity() == identity) {
                 return i;
             }
         }
         return -1;
-
     }
-    public void displayMenu(){
+   public void editReceipt(int identity,Receipt receipt) {
+        int index =findIndexById(identity);
+        if(index==-1) {
+            System.out.println(" ID không tồn tại");
+        } else {
+            receiptList.set(findIndexById(identity),receipt);
+        }
+   }
+
+  public void count(){
+
+      System.out.println("CHI PHÍ THUÊ XE");
+  }
+    public void displayMenuReceipt1(){
         System.out.println("<>.<>.<>.<>.<>.<>.\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38さくら株 式 会 社\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38<>.<>.<>.<>.<>");
         System.out.println ("*=*=*=*=*=*=*=*=*=*=*=*Menu Hóa Đơn=*=*=*=*=*=*=*=*=*=*=*");
         System.out.println ("*-1 - Hiển thị danh sách hóa đơn                       =*");
@@ -94,8 +117,11 @@ public class ReceiptManage {
         System.out.println ("*-5 - Xuất hoá đơn(xuất file csv)                      =*");
         System.out.println ("*-6 - Xem lại Menu!                                    =*");
         System.out.println ("*-7 - Thoát                                            =*");
-        System.out.println ("*-                mời nhập lựa chọn của bạn            =*");
-        System.out.println("*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=");
+        System.out.println ("*-                \uD83D\uDC49mời nhập lựa chọn của bạn           =*");
+        System.out.println ("*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
     }
-
+    //    public  final String ANSI_CYAN = "\u001B[36m";
+//        public final String ANSI_BLUE = "\u001B[34m";
+//        public final String ANSI_RED = "\u001B[31m";
+//        public final String ANSI_RESET = "\u001B[0m";
 }

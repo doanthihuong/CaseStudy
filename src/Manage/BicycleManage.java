@@ -1,8 +1,10 @@
 package Manage;
 
+import file_csv.WriteReadToFile;
 import model.Bicycle;
 
 import javax.swing.plaf.PanelUI;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,17 +12,23 @@ public class BicycleManage {
     public static List<Bicycle> bicycleList = new ArrayList<>();
     public static final String READY = "READY";
     public static final String NOT_NOW = "NOT NOW";
+     int sum;
 
-    public void add(Bicycle bicycle) {
+
+    public BicycleManage() throws FileNotFoundException {
+        bicycleList = WriteReadToFile.readFile("src\\bicycle-Manage.csv", bicycleList);
+    }
+
+    public void add(Bicycle bicycle) throws FileNotFoundException {
         bicycleList.add(bicycle);
         System.out.println("Bạn đã THÊM thành công một xe mới");
-
+        WriteReadToFile.writeToFile(bicycleList);
     }
 
     public void display() {
         if (bicycleList.isEmpty()) {
             System.out.println(" Danh sách xe chưa được cập nhật !!!");
-            System.out.println("----------------------------------------------------------------");
+            System.out.println("--------------------------------------------------------");
             return;
         }
         System.out.println("------------------------------------------------------------");
@@ -154,10 +162,25 @@ public class BicycleManage {
         System.out.println("*-8 - Tìm xe theo id xe (hiển thị xe duy nhất)          =*");
         System.out.println("*-9 - Tìm xe theo giá cho thuê                          =*");
         System.out.println("*-10 - Xem lại danh sách Menu                           =*");
-        System.out.println("*-11 - Thoát                                            =*");
-        System.out.println("*-                Mời nhập lựa chọn của bạn             =*");
+        System.out.println("*-11 - Xem menu hóa đơn                                 =*");
+        System.out.println("*-12 - Thoát                                            =*");
+        System.out.println("*-                 \uD83D\uDC49 \uD83D\uDC49 Mời nhập lựa chọn của bạn       =*");
         System.out.println("=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
 
     }
+    public void displayMenuReceipt(){
+        System.out.println("<>.<>.<>.<>.<>.<>.\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38さくら株 式 会 社\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38<>.<>.<>.<>.<>");
+        System.out.println ("*=*=*=*=*=*=*=*=*=*=*=*Menu Hóa Đơn=*=*=*=*=*=*=*=*=*=*=*");
+        System.out.println ("*-1 - Hiển thị danh sách hóa đơn                       =*");
+        System.out.println ("*-2 - Thêm hóa đơn                                     =*");
+        System.out.println ("*-3 - Sửa thông tin hóa đơn theo số CMND của khách     =*");
+        System.out.println ("*-4 - Tính tiền hóa đơn - Xóa luôn hóa đơn             =*");
+        System.out.println ("*-5 - Xuất hoá đơn(xuất file csv)                      =*");
+        System.out.println ("*-6 - Xem lại Menu!                                    =*");
+        System.out.println ("*-7 - Thoát                                            =*");
+        System.out.println ("*-                \uD83D\uDC49mời nhập lựa chọn của bạn           =*");
+        System.out.println ("*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+    }
+
 
 }
