@@ -17,7 +17,6 @@ public class Bicycle {  //License plate: biển số
         this.status = status;
         this.rentCost = rentCost;
     }
-
     public int getId() {
         return id;
     }
@@ -58,10 +57,13 @@ public class Bicycle {  //License plate: biển số
         this.rentCost = rentCost;
     }
 
+
     @Override
     public String toString() {
         System.out.printf("\"| %-10s| %-10s| %-10s| %-10s| %-10s|\n\"", "ID", "BIỂN SỐ", " MÀU SẮC", "TRẠNG THÁI", "GIÁ/GIỜ");
         System.out.println("-------------------------------------------------------------");
         return String.format("\"| %-10s| %-10s| %-10s| %-10s| %-10s|\n\"",id, licensePlate,color,status,rentCost);
     }
+
+
 }

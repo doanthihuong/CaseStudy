@@ -43,7 +43,7 @@ public class WriteReadToFile {
         return bicycleList;
     }
     // ghi ra file quản lý hóa đơn
-    public void writeToFileReceipt(List<Receipt>receiptList) throws FileNotFoundException{
+    public static void writeToFileReceipt(List<Receipt>receiptList) throws FileNotFoundException{
         File file1 =new File("src\\receipt-Manage.csv");
         PrintWriter printWriter1 = new PrintWriter(file1);
         String str = "Identity,Tên,Thời gian mượn,Thời gian trả,Giá Thuê/giờ ,ID Xe thuê,Biển số,Giá/giờ,Chi Phí";

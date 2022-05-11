@@ -33,9 +33,10 @@ public class ReceiptManage {
         this.receiptNumber = receiptNumber;
     }
 
-    public void addReceipt(Receipt receipt) {
+    public void addReceipt(Receipt receipt) throws FileNotFoundException {
         receiptList.add(receipt);
         receiptNumber++;
+        WriteReadToFile.writeToFileReceipt(receiptList);
         System.out.println( "Bạn đã thêm thành công 1 hóa đơn mới" );
     }
 
