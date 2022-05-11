@@ -19,7 +19,7 @@ public class WriteReadToFile {
         PrintWriter printWriter = new PrintWriter(file);
         String str = "Id,Biển số,Màu sắc,Trạng thái,Giá cho thuê" + "\n";
         for (Bicycle i : bicycleList) {
-            str += i.getId() + "," + i.getLicensePlate() + "," + i.getColor() + "," + i.getStatus() + "," + i.getRentCost();
+            str += i.getId() + "," + i.getLicensePlate() + "," + i.getColor() + "," + i.getStatus() + "," + i.getRentCost() + "\n";
         }
         printWriter.write(str);
         printWriter.close();

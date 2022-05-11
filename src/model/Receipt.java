@@ -6,12 +6,13 @@ public class Receipt {//borrowed time : thời gian thuê
     private String name;
     private double borrowedTime;
     private double payTime;
+    private double cost;
     private Bicycle bicycle;
 
     public Receipt() {
     }
 
-    public Receipt(int identity, String name, double borrowedTime,double payTime, Bicycle bicycle) {
+    public Receipt(int identity, String name, double borrowedTime, double payTime, Bicycle bicycle) {
         this.identity = identity;
         this.name = name;
         this.borrowedTime = borrowedTime;
@@ -51,6 +52,14 @@ public class Receipt {//borrowed time : thời gian thuê
         this.payTime = payTime;
     }
 
+    public double getCost() {
+        return (this.payTime - this.borrowedTime) * bicycle.getRentCost();
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
     public Bicycle getBicycle() {
         return bicycle;
     }
@@ -61,9 +70,9 @@ public class Receipt {//borrowed time : thời gian thuê
 
     @Override
     public String toString() {
-        System.out.printf("\"| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s|\n\"","Số CMND","Tên","Tg MƯỢN","Tg TRẢ","ID XE","BIỂN SỐ","GIÁ/GIỜ");
+        System.out.printf("\"| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s|%-7s|\n\"","Số CMND","Tên","Tg MƯỢN","Tg TRẢ","ID XE","BIỂN SỐ","GIÁ/GIỜ","TỔNG TIỀN");
         System.out.println("-------------------------------------------------------------");
-        return String.format("\"| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s|\n\"",identity,name,borrowedTime,payTime,bicycle.getId(),bicycle.getLicensePlate(),bicycle.getRentCost());
+        return String.format("\"| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s|%-7s|\n\"",identity,name,borrowedTime,payTime,bicycle.getId(),bicycle.getLicensePlate(),bicycle.getRentCost(),getCost());
     }
 
 }

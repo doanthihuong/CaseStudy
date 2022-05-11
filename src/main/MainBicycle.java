@@ -2,6 +2,7 @@ package main;
 
 import Manage.BicycleManage;
 import model.Bicycle;
+import model.Menu;
 
 import javax.jws.soap.SOAPBinding;
 import javax.sound.midi.Soundbank;
@@ -11,7 +12,8 @@ import java.util.Scanner;
 
 public class MainBicycle {
     public static void main(String[] args) throws FileNotFoundException {
-
+        Menu menu = new Menu();
+        menu.menuMain();
         BicycleManage bicycleManage = new BicycleManage();
         try (Scanner sc = new Scanner(System.in)) {
             int choice = -1;
@@ -36,7 +38,6 @@ public class MainBicycle {
 //                        System.out.println("\uD83C\uDD98"); sos
                         System.out.println("\uD83C\uDF38 \uD83C\uDF38さくら 株 式 会 社\uD83C\uDF38 \uD83C\uDF38");
                         bicycleManage.display();
-                        System.out.println("------------------------THÊM THÀNH CÔNG-----------------------");
                         System.out.println(" \uD83D\uDC49Mời nhập lựa chọn của bạn");
                         break;
                     case 2:
@@ -79,7 +80,7 @@ public class MainBicycle {
                                 break;
                             }
                         }
-                        while (choice1 != 3);
+                        while (choice1 <1 ||choice1>2);
                         check = true;
                         int rentCost = -1;
                         check = false;
@@ -95,7 +96,8 @@ public class MainBicycle {
                         }
                         Bicycle bicycle = new Bicycle(id, licensePlate, color, status, rentCost);
                         bicycleManage.add(bicycle);
-                        System.out.println("==================THÊM thành công=====================");
+
+                        System.out.println("------------------------THÊM THÀNH CÔNG-----------------------");
                         System.out.println("nhập lựa chọn tiếp theo của bạn");
                         break;
                     case 3:
@@ -168,7 +170,6 @@ public class MainBicycle {
                             }
                         }
                         bicycleManage.delete(id2);
-                        System.out.println("=================== XÓA thành công================");
                         System.out.println(" Nhập lựa chọn tiếp theo của bạn");
                         break;
                     case 5:
@@ -203,10 +204,12 @@ public class MainBicycle {
                         break;
                     case 7:
                         System.out.println(" Tính năng đang được hệ thống bảo trì");
-                        System.out.print("Nhập vào Id xe cần update: ");
-                        int idOfUpdate = sc.nextInt();
-                        bicycleManage.busyToEmpty(idOfUpdate);
-                        break;
+//                        xem lại
+//                        System.out.print("Nhập vào Id xe cần update: ");
+//                        int idOfUpdate = sc.nextInt();
+//                        bicycleManage.busyToEmpty(idOfUpdate);
+//                        break;
+                        System.out.println("Nhập lựa chọn tiếp theo của bạn");
                     case 8:
                         int id4 = -1;
                         check = false;
@@ -246,10 +249,13 @@ public class MainBicycle {
                         System.out.println("Nhập lựa chọn tiếp theo của bạn");
                         break;
                     case 11:
+
+                        menu.menuReceipt();
                         bicycleManage.displayMenuReceipt();
-                        System.out.println(" SORRY! updating");
-                        System.out.println("--------------------------------------------------------");
-                        System.out.println("PLEASE, COMING SOON !!!  ");
+
+//                        System.out.println(" SORRY! updating");
+//                        System.out.println("--------------------------------------------------------");
+//                        System.out.println("PLEASE, COMING SOON !!!  ");
                         break;
                     case 12:
                         System.out.println("さよなら..まった。。会いましょう　\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A");

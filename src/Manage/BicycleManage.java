@@ -19,9 +19,10 @@ public class BicycleManage {
         bicycleList = WriteReadToFile.readFile("src\\bicycle-Manage.csv", bicycleList);
     }
 
+
+
     public void add(Bicycle bicycle) throws FileNotFoundException {
         bicycleList.add(bicycle);
-        System.out.println("Bạn đã THÊM thành công một xe mới");
         WriteReadToFile.writeToFile(bicycleList);
     }
 
@@ -66,24 +67,27 @@ public class BicycleManage {
         }
     }
 
-    public void edit(int id, Bicycle bicycle) {
+    public void edit(int id, Bicycle bicycle) throws FileNotFoundException {
         bicycleList.set(findIndexById(id), bicycle);
+        WriteReadToFile.writeToFile(bicycleList);
 
     }
 
-    public void delete(int id) {
+    public void delete(int id) throws FileNotFoundException {
         int index = findIndexById(id);
         if (index == -1) {
             System.out.println("Xe này không có trong danh sách ");
         } else {
             bicycleList.remove(findIndexById(id));
+            WriteReadToFile.writeToFile(bicycleList);
             System.out.println("------------------------ XÓA thành công--------------------------");
         }
 
     }
 
-    public void deleteAll() {
+    public void deleteAll() throws FileNotFoundException {
         bicycleList.removeAll(bicycleList);
+        WriteReadToFile.writeToFile(bicycleList);
     }
 
 
