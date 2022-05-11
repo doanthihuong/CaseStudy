@@ -1,7 +1,9 @@
 package Manage;
 
+import file_csv.WriteReadToFile;
 import model.Receipt;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,13 +12,10 @@ public class ReceiptManage {
 
     private int receiptNumber = 0;
 
-    //    public ReceiptManage() throws FileNotFoundException {
-//        receiptList = WriteReadToFile.("src\\receipt-Manage.csv",receiptList);
-//    }
-    public ReceiptManage() {
-        this.receiptList = receiptList;
-        this.receiptNumber = receiptNumber;
+        public ReceiptManage() throws FileNotFoundException {
+        receiptList = WriteReadToFile.readFileReceipt("src\\receipt-Manage.csv",receiptList);
     }
+
 
     public List<Receipt> getReceiptList() {
         return receiptList;
@@ -103,21 +102,17 @@ public class ReceiptManage {
         }
    }
 
-  public void count(){
-
-      System.out.println("CHI PHÍ THUÊ XE");
-  }
     public void displayMenuReceipt1(){
         System.out.println("<>.<>.<>.<>.<>.<>.\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38さくら株 式 会 社\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38<>.<>.<>.<>.<>");
-        System.out.println ("*=*=*=*=*=*=*=*=*=*=*=*Menu Hóa Đơn=*=*=*=*=*=*=*=*=*=*=*");
+        System.out.println ("*=*=*=*=*=*=*=*=*=*=*=*MENU HÓA ĐƠN=*=*=*=*=*=*=*=*=*=*=*");
         System.out.println ("*-1 - Hiển thị danh sách hóa đơn                       =*");
         System.out.println ("*-2 - Thêm hóa đơn                                     =*");
         System.out.println ("*-3 - Sửa thông tin hóa đơn theo số CMND của khách     =*");
         System.out.println ("*-4 - Tính tiền hóa đơn - Xóa luôn hóa đơn             =*");
         System.out.println ("*-5 - Xuất hoá đơn(xuất file csv)                      =*");
-        System.out.println ("*-6 - Xem lại Menu!                                    =*");
-        System.out.println ("*-7 - Thoát                                            =*");
-        System.out.println ("*-                \uD83D\uDC49mời nhập lựa chọn của bạn           =*");
+        System.out.println ("*-6 - Xem lại Menu hóa đơn!                            =*");
+        System.out.println ("*-7 - Quay lại MENU chính                              =*");
+        System.out.println ("*-                \uD83D\uDC49Mời nhập lựa chọn của bạn           =*");
         System.out.println ("*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
     }
     //    public  final String ANSI_CYAN = "\u001B[36m";

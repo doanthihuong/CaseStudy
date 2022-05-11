@@ -46,13 +46,12 @@ public class WriteReadToFile {
     public void writeToFileReceipt(List<Receipt>receiptList) throws FileNotFoundException{
         File file1 =new File("src\\receipt-Manage.csv");
         PrintWriter printWriter1 = new PrintWriter(file1);
-        String str = "Identity,Tên,Thời gian mượn,Thời gian trả,Giá Thuê/giờ ,ID Xe t";
+        String str = "Identity,Tên,Thời gian mượn,Thời gian trả,Giá Thuê/giờ ,ID Xe thuê,Biển số,Giá/giờ,Chi Phí";
         for (Receipt i:receiptList) {
-            str+= i.getIdentity()+","+i.getName()+","+i.getBorrowedTime()+","+i.getPayTime()+","+ i.getBicycle().getId();
+            str+= i.getIdentity()+","+i.getName()+","+i.getBorrowedTime()+","+i.getPayTime()+","+ i.getBicycle().getId()+","+i.getBicycle().getLicensePlate()+","+i.getBicycle().getRentCost()+","+i.getCost();
         }
         printWriter1.write(str);
         printWriter1.close();
-        //
     }
     // doc file
     public static List<Receipt> readFileReceipt(String path, List<Receipt> receiptList) throws FileNotFoundException {
@@ -62,8 +61,7 @@ public class WriteReadToFile {
             while (sc.hasNext()) {
                 String a = sc.nextLine();
                 String[] value = a.split(",");
-
-
+//                receiptList.add(new Receipt((Integer.parseInt(value[0]), value[1], Double.parseDouble(value[2]), Double.parseDouble(value[3]),Integer.parseInt(value[4]),value[5],Double.parseDouble(value[6]),Double.parseDouble(value[7])));
             }
             sc.close();
         } else {

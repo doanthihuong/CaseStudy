@@ -71,7 +71,7 @@ public class Receipt {//borrowed time : thời gian thuê
     @Override
     public String toString() {
         System.out.printf("\"| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s|%-7s|\n\"","Số CMND","Tên","Tg MƯỢN","Tg TRẢ","ID XE","BIỂN SỐ","GIÁ/GIỜ","TỔNG TIỀN");
-        System.out.println("-------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------");
         return String.format("\"| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s|%-7s|\n\"",identity,name,borrowedTime,payTime,bicycle.getId(),bicycle.getLicensePlate(),bicycle.getRentCost(),getCost());
     }
 

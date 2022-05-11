@@ -58,12 +58,17 @@ public class BicycleManage {
     }
 
     public void findById(int id) {
-        boolean check = true;
-        for (int i = 0; i < bicycleList.size(); i++) {
+        int index = findIndexById(id);
+        if (index == -1) {
+            System.out.println("Xe này không có trong danh sách ");
+        } else {
+            for (int i = 0; i < bicycleList.size(); i++) {
             if (bicycleList.get(i).getId() == id) {
+                System.out.println(" Xe có ID " + id + " cần tìm là : " );
                 System.out.println(bicycleList.get(i));
-                check = true;
             }
+        }
+            bicycleList.remove(findIndexById(id));
         }
     }
 
@@ -132,59 +137,65 @@ public class BicycleManage {
 
     }
 
-    public void busyToEmpty(int id) {
+    public void busyToEmpty(int id) throws FileNotFoundException {
         int index = findIndexById(id);
         if(bicycleList.get(index).getStatus().equals(NOT_NOW)) {
             bicycleList.get(index).setStatus("READY");
+            WriteReadToFile.writeToFile(bicycleList);
             System.out.println("------------------- UPDATE THÀNH CÔNG----------------------");
         } else {
             System.out.println("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
         }
     }
-    public void emptyToBuSy(int id) {
+    public void emptyToBuSy(int id) throws FileNotFoundException {
         int index = findIndexById(id);
         if(bicycleList.get(index).getStatus().equals(READY)) {
             bicycleList.get(index).setStatus("NOT NOW");
+            WriteReadToFile.writeToFile(bicycleList);
             System.out.println("------------------- UPDATE THÀNH CÔNG----------------------");
         } else {
             System.out.println("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
         }
     }
 
+            public void displayMenu () {
+                System.out.println("                               <>.<>.<>.<>.<>.<>.\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38さくら株 式 会 社\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38<>.<>.<>.<>.<>");
 
-    public void displayMenu() {
-        System.out.println("<>.<>.<>.<>.<>.<>.\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38さくら株 式 会 社\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38<>.<>.<>.<>.<>");
+                System.out.println("                               *=*=*=*=*=*=*=MENU QUẢN LÝ CHO THUÊ XE ĐẠP=*=*=*=*=*=*=*=*");
+                System.out.println("                               *-1 -  Hiển thị số lượng xe đạp                         =*");
+                System.out.println("                               *-2 - Thêm 1 xe đạp mới                                 =*");
+                System.out.println("                               *-3 - Sửa thông tin xe theo số i                        =*");
+                System.out.println("                               *-4 - Xóa xe đap theo id                                =*");
+                System.out.println("                               *-5 - Xóa tất cả xe                                     =*");
+                System.out.println("                               *-6 - Hiển thị xe đã cho thuê/ đang rảnh                =*");
+                System.out.println("                               *-7 - Thay đổi trạng thái xe đạp (READY/ NOT_NOW)       =*");
+                System.out.println("                               *-8 - Tìm xe theo id xe (hiển thị xe duy nhất)          =*");
+                System.out.println("                               *-9 - Tìm xe theo giá cho thuê                          =*");
+                System.out.println("                               *-10 - Xem lại danh sách Menu                           =*");
+                System.out.println("                               *-11 - Xem menu hóa đơn                                 =*");
+                System.out.println("                               *-12 - Thoát                                            =*");
+                System.out.println("                               *-                 \uD83D\uDC49 \uD83D\uDC49 Mời nhập lựa chọn của bạn       =*");
+                System.out.println("                               =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
 
-        System.out.println("*=*=*=*=*=*=*=MENU QUẢN LÝ CHO THUÊ XE ĐẠP=*=*=*=*=*=*=*=*");
-        System.out.println("*-1 -  Hiển thị số lượng xe đạp                         =*");
-        System.out.println("*-2 - Thêm 1 xe đạp mới                                 =*");
-        System.out.println("*-3 - Sửa thông tin xe theo số i                        =*");
-        System.out.println("*-4 - Xóa xe đap theo id                                =*");
-        System.out.println("*-5 - Xóa tất cả xe                                     =*");
-        System.out.println("*-6 - Hiển thị xe đã cho thuê/ đang rảnh                =*");
-        System.out.println("*-7 - Thay đổi trạng thái xe đạp (đang rảnh/đã cho thuê)=*");
-        System.out.println("*-8 - Tìm xe theo id xe (hiển thị xe duy nhất)          =*");
-        System.out.println("*-9 - Tìm xe theo giá cho thuê                          =*");
-        System.out.println("*-10 - Xem lại danh sách Menu                           =*");
-        System.out.println("*-11 - Xem menu hóa đơn                                 =*");
-        System.out.println("*-12 - Thoát                                            =*");
-        System.out.println("*-                 \uD83D\uDC49 \uD83D\uDC49 Mời nhập lựa chọn của bạn       =*");
-        System.out.println("=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
-
-    }
-    public void displayMenuReceipt(){
-        System.out.println("<>.<>.<>.<>.<>.<>.\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38さくら株 式 会 社\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38<>.<>.<>.<>.<>");
-        System.out.println ("*=*=*=*=*=*=*=*=*=*=*=*Menu Hóa Đơn=*=*=*=*=*=*=*=*=*=*=*");
-        System.out.println ("*-1 - Hiển thị danh sách hóa đơn                       =*");
-        System.out.println ("*-2 - Thêm hóa đơn                                     =*");
-        System.out.println ("*-3 - Sửa thông tin hóa đơn theo số CMND của khách     =*");
-        System.out.println ("*-4 - Tính tiền hóa đơn - Xóa luôn hóa đơn             =*");
-        System.out.println ("*-5 - Xuất hoá đơn(xuất file csv)                      =*");
-        System.out.println ("*-6 - Xem lại Menu!                                    =*");
-        System.out.println ("*-7 - Thoát                                            =*");
-        System.out.println ("*-                \uD83D\uDC49mời nhập lựa chọn của bạn           =*");
-        System.out.println ("*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
-    }
+            }
+            public void displayMenuReceipt () {
+                System.out.println("                                     <>.<>.<>.<>.<>.<>.\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38さくら株 式 会 社\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38<>.<>.<>.<>.<>");
+                System.out.println("                                    *=*=*=*=*=*=*=*=*=*=*=*Menu Hóa Đơn=*=*=*=*=*=*=*=*=*=*=*");
+                System.out.println("                                    *-1 - Hiển thị danh sách hóa đơn                       =*");
+                System.out.println("                                    *-2 - Thêm hóa đơn                                     =*");
+                System.out.println("                                    *-3 - Sửa thông tin hóa đơn theo số CMND của khách     =*");
+                System.out.println("                                    *-4 - Tính tiền hóa đơn - Xóa luôn hóa đơn             =*");
+                System.out.println("                                    *-5 - Xuất hoá đơn(xuất file csv)                      =*");
+                System.out.println("                                    *-6 - Xem lại Menu!                                    =*");
+                System.out.println("                                    *-7 - Thoát                                            =*");
+                System.out.println("                                    *-                \uD83D\uDC49mời nhập lựa chọn của bạn           =*");
+                System.out.println("                                    *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+            }
 
 
+
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
 }
