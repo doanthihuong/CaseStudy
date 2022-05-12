@@ -3,7 +3,6 @@ package Manage;
 import file_csv.WriteReadToFile;
 import model.Bicycle;
 
-import javax.swing.plaf.PanelUI;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +11,9 @@ public class BicycleManage {
     public static List<Bicycle> bicycleList = new ArrayList<>();
     public static final String READY = "READY";
     public static final String NOT_NOW = "NOT NOW";
-    int sum;
-
-
     public BicycleManage() throws FileNotFoundException {
         bicycleList = WriteReadToFile.readFile("src\\bicycle-Manage.csv", bicycleList);
     }
-
 
     public void add(Bicycle bicycle) throws FileNotFoundException {
         bicycleList.add(bicycle);
@@ -27,7 +22,7 @@ public class BicycleManage {
 
     public void display() {
         if (bicycleList.isEmpty()) {
-            System.out.println(" Danh sách xe chưa được cập nhật !!!");
+            System.out.println(ANSI_RED +" Danh sách xe chưa được cập nhật !!!"+ANSI_RESET);
             System.out.println("--------------------------------------------------------");
             return;
         }
@@ -60,7 +55,7 @@ public class BicycleManage {
     public void findById(int id) {
         int index = findIndexById(id);
         if (index == -1) {
-            System.out.println("Xe này không có trong danh sách ");
+            System.out.println(ANSI_RED +"Xe này không có trong danh sách "+ANSI_RESET);
         } else {
             for (int i = 0; i < bicycleList.size(); i++) {
                 if (bicycleList.get(i).getId() == id) {
@@ -80,11 +75,11 @@ public class BicycleManage {
     public void delete(int id) throws FileNotFoundException {
         int index = findIndexById(id);
         if (index == -1) {
-            System.out.println("Xe này không có trong danh sách ");
+            System.out.println(ANSI_RED +"Xe này không có trong danh sách "+ANSI_RESET);
         } else {
             bicycleList.remove(findIndexById(id));
             WriteReadToFile.writeToFile(bicycleList);
-            System.out.println("------------------------ XÓA thành công--------------------------");
+            System.out.println(ANSI_BLUE+"------------------------ XÓA thành công--------------------------"+ANSI_RESET);
         }
 
     }
@@ -104,7 +99,7 @@ public class BicycleManage {
             }
         }
         if (check == false) {
-            System.out.println("----CÔNG TY KHÔNG CHO THUÊ VỚI GIÁ NÀY!");
+            System.out.println(ANSI_RED +"CÔNG TY KHÔNG CHO THUÊ VỚI GIÁ NÀY!"+ANSI_RESET);
         }
     }
 
@@ -118,7 +113,7 @@ public class BicycleManage {
             }
         }
         if (check == false) {
-            System.out.println("TẤT CẢ XE ĐỀU Ở TRẠNG THÁI ĐÃ CHO THUÊ");
+            System.out.println(ANSI_RED + "TẤT CẢ XE ĐỀU Ở TRẠNG THÁI ĐÃ CHO THUÊ"+ANSI_RESET);
         }
     }
 
@@ -131,7 +126,7 @@ public class BicycleManage {
             }
         }
         if (check == false) {
-            System.out.println("-----------------TẤT CẢ XE ĐỀU SẴN SÀNG-------------");
+            System.out.println(ANSI_BLUE+"-----------------TẤT CẢ XE ĐỀU SẴN SÀNG-------------"+ANSI_RESET);
         }
 
     }
@@ -141,7 +136,7 @@ public class BicycleManage {
         if (bicycleList.get(index).getStatus().equals(NOT_NOW)) {
             bicycleList.get(index).setStatus("READY");
             WriteReadToFile.writeToFile(bicycleList);
-            System.out.println("------------------- UPDATE THÀNH CÔNG----------------------");
+            System.out.println(ANSI_BLUE+"------------------- UPDATE THÀNH CÔNG----------------------"+ANSI_RESET);
         } else {
             System.out.println("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
         }
@@ -152,7 +147,7 @@ public class BicycleManage {
         if (bicycleList.get(index).getStatus().equals(READY)) {
             bicycleList.get(index).setStatus("NOT NOW");
             WriteReadToFile.writeToFile(bicycleList);
-            System.out.println("------------------- UPDATE THÀNH CÔNG----------------------");
+            System.out.println(ANSI_BLUE+"------------------- UPDATE THÀNH CÔNG----------------------"+ANSI_RESET);
         } else {
             System.out.println("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
         }
@@ -174,7 +169,7 @@ public class BicycleManage {
         System.out.println("                               *-10 - Xem menu hóa đơn                                 =*");
         System.out.println("                               *-11 - Xem lại danh sách Menu                           =*");
         System.out.println("                               *-12 - Thoát                                            =*");
-        System.out.println("                               *-             \uD83D\uDC49 \uD83D\uDC49 Mời nhập lựa chọn của bạn       =*");
+        System.out.println("                               *-                \uD83D\uDC49 \uD83D\uDC49 Mời nhập lựa chọn của bạn       =*");
         System.out.println("                               =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
     }
 

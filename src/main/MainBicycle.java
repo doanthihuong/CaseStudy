@@ -4,9 +4,6 @@ import Manage.BicycleManage;
 import file_csv.WriteReadToFile;
 import model.Bicycle;
 import model.Menu;
-
-import javax.jws.soap.SOAPBinding;
-import javax.sound.midi.Soundbank;
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -16,9 +13,8 @@ public class MainBicycle {
         Menu menu = new Menu();
         menu.menuMain();
         BicycleManage bicycleManage = new BicycleManage();
-        WriteReadToFile writeReadToFile = new WriteReadToFile();
         try (Scanner sc = new Scanner(System.in)) {
-            int choice = -1;
+            int choice;
             boolean check;
             bicycleManage.displayMenu();
             do {
@@ -62,7 +58,6 @@ public class MainBicycle {
                         System.out.println("\uD83D\uDC49 Nhập trạng thái xe:\n1. SẴN SÀNG\t\t\t2. KHÔNG PHẢI BÂY GIỜ");
                         String status = "";
                         int choice1 = -1;
-                        check = false;
                         do {
                             System.out.println("\uD83D\uDC49 Chọn trạng thái 1 hoặc 2: ");
                             try {
@@ -80,7 +75,6 @@ public class MainBicycle {
                             }
                         }
                         while (choice1 < 1 || choice1 > 2);
-                        check = true;
                         int rentCost = -1;
                         check = false;
                         while (!check) {
@@ -96,7 +90,7 @@ public class MainBicycle {
                         Bicycle bicycle = new Bicycle(id, licensePlate, color, status, rentCost);
                         bicycleManage.add(bicycle);
 
-                        System.out.println("------------------------THÊM THÀNH CÔNG-----------------------");
+                        System.out.println(ANSI_BLUE+"------------------------THÊM THÀNH CÔNG-----------------------"+ANSI_RESET);
                         System.out.println("\uD83D\uDC49 Nhập lựa chọn tiếp theo của bạn");
                         break;
                     case 3:
@@ -149,7 +143,7 @@ public class MainBicycle {
                                     WriteReadToFile.writeToFile(bicycleManage.getBicycleList());
                                     System.out.println("ĐÃ SỬA XONG!!!");
                                 } else {
-                                    System.out.println("Không tồn tại xe có ID = " + id1 + " trong danh sách!!!");
+                                    System.out.println(ANSI_RED+"\uD83C\uDD98 Không tồn tại xe có ID = "+ANSI_RESET + id1 + ANSI_RED +" trong danh sách!!!"+ANSI_RESET);
                                 }
                             } catch (Exception e) {
                                 System.out.println(ANSI_RED+"\uD83C\uDD98  Chỉ được nhập số !"+ANSI_RESET);
@@ -178,7 +172,7 @@ public class MainBicycle {
                         break;
                     case 5:
                         bicycleManage.deleteAll();
-                        System.out.println("--------------------Danh sách trống---------------");
+                        System.out.println("--------------------DANH SÁCH TRỐNG---------------");
                         System.out.println("\uD83D\uDC49 Nhập lựa chọn tiếp theo của bạn");
                         break;
                     case 6:
@@ -211,8 +205,8 @@ public class MainBicycle {
                             try {
                                 System.out.println("\uD83D\uDC49 Nhập ID xe muốn cập nhật trạng thái");
                                 int id4 = sc.nextInt();
-                                int idOfupdate = bicycleManage.findIndexById(id4);
-                                while (idOfupdate != -1) {
+                                int idUpdate = bicycleManage.findIndexById(id4);
+                                while (idUpdate != -1) {
                                     bicycleManage.findById(id4);
                                     System.out.println("\uD83D\uDC49 UPDATE TRẠNG THÁI: \n1.READY to NOT_NOW\t\t\t2.NOT_NOW XE to READY");
                                     int choice4;
@@ -231,14 +225,14 @@ public class MainBicycle {
                                     }
                                 }
                             } catch (InputMismatchException e) {
-                                System.out.println(ANSI_RED+"\uD83C\uDD98  Chỉ được nhập số !"+ANSI_RESET);
+                                System.out.println(ANSI_RED+"\uD83C\uDD98 Chỉ được nhập số !"+ANSI_RESET);
                                 sc.nextLine();
                             }
                         }
                         System.out.println("\uD83D\uDC49 Mời nhập lựa chọn tiếp theo");
                         break;
                     case 8:
-                        int id4 = -1;
+                        int id4 ;
                         check = false;
                         while (!check) {
                             System.out.println(ANSI_RED+"\uD83D\uDC49 Nhập id xe muốn tìm"+ANSI_RESET);
@@ -268,8 +262,6 @@ public class MainBicycle {
                                 System.out.println(" \uD83C\uDD98 Vui lòng nhập số");
                             }
                         }
-
-                        //                    bicycleManage.findByRentCost(cost);
                         System.out.println("\uD83D\uDC49 Nhập lựa chọn tiếp theo của bạn");
                         break;
 
@@ -283,17 +275,45 @@ public class MainBicycle {
                         System.out.println("\uD83D\uDC49 Nhập lựa chọn tiếp theo của bạn");
                         break;
                     case 12:
-                        System.out.println("さよなら..まった。。会いましょう　\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A");
                         System.exit(0);
-
+                        System.out.println(ANSI_CYAN+"さよなら..まった。。会いましょう　\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A"+ANSI_RESET);
                         break;
-
                 }
             } while (choice >= 1 && choice <= 12);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_RED = "\u001B[31m";

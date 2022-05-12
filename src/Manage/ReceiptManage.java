@@ -37,7 +37,7 @@ public class ReceiptManage {
         receiptList.add(receipt);
         receiptNumber++;
         WriteReadToFile.writeToFileReceipt(receiptList);
-        System.out.println( "Bạn đã thêm thành công 1 hóa đơn mới" );
+        System.out.println( ANSI_BLUE+"Bạn đã thêm thành công 1 hóa đơn mới"+ANSI_RESET);
     }
 
     public void editReceipt(String identity, Receipt receipt) {
@@ -47,10 +47,10 @@ public class ReceiptManage {
     public void deleteReceipt(int identity) {
         int index = findIndexById(identity);
         if (index == -1) {
-            System.out.println("Không có số CMND nào phù hợp");
+            System.out.println(ANSI_RED +"Không có số CMND nào phù hợp"+ANSI_RESET);
         } else {
             receiptList.remove(index);
-            System.out.println(" Bạn đã xóa thành công hóa đơn");
+            System.out.println(ANSI_RED +"Bạn đã xóa thành công hóa đơn"+ANSI_RESET);
         }
 
     }
@@ -67,7 +67,7 @@ public class ReceiptManage {
         }
 
         if (check == false) {
-            System.out.println("Chưa có hóa đơn nào được thêm mới!");
+            System.out.println(ANSI_RED +"Chưa có hóa đơn nào được thêm mới!"+ANSI_RESET);
         }
 
     }
@@ -81,7 +81,7 @@ public class ReceiptManage {
             }
         }
         if (check == false) {
-            System.out.println("Không Id này trong danh sách");
+            System.out.println(ANSI_RED +"Không Id này trong danh sách"+ANSI_RESET);
         }
     }
 
@@ -97,7 +97,7 @@ public class ReceiptManage {
    public void editReceipt(int identity,Receipt receipt) {
         int index =findIndexById(identity);
         if(index==-1) {
-            System.out.println(" ID không tồn tại");
+            System.out.println(ANSI_RED +" ID không tồn tại"+ANSI_RESET);
         } else {
             receiptList.set(findIndexById(identity),receipt);
         }
@@ -116,8 +116,8 @@ public class ReceiptManage {
         System.out.println ("*-                \uD83D\uDC49Mời nhập lựa chọn của bạn           =*");
         System.out.println ("*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
     }
-    //    public  final String ANSI_CYAN = "\u001B[36m";
-//        public final String ANSI_BLUE = "\u001B[34m";
-//        public final String ANSI_RED = "\u001B[31m";
-//        public final String ANSI_RESET = "\u001B[0m";
+        public  final String ANSI_CYAN = "\u001B[36m";
+        public final String ANSI_BLUE = "\u001B[34m";
+        public final String ANSI_RED = "\u001B[31m";
+        public final String ANSI_RESET = "\u001B[0m";
 }
