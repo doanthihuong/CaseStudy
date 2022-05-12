@@ -79,9 +79,14 @@ public class Receipt {//borrowed time : thời gian thuê
 
     @Override
     public String toString() {
-        System.out.printf("\"| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s|%-7s|\n\"","Số CMND","Tên","Tg MƯỢN","Tg TRẢ","ID XE","BIỂN SỐ","GIÁ/GIỜ","TỔNG TIỀN");
-        System.out.println("------------------------------------------------------------------------");
+        System.out.printf(ANSI_BLUE+"\"| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s|%-7s|\n\"","Số CMND","Tên","Tg MƯỢN","Tg TRẢ","ID XE","BIỂN SỐ","GIÁ/GIỜ","TỔNG TIỀN"+ANSI_RESET);
+        System.out.println(ANSI_BLUE+"------------------------------------------------------------------------"+ANSI_RESET);
         return String.format("\"| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s| %-7s|%-7s|\n\"",identity,name,borrowedTime,payTime,bicycle.getId(),bicycle.getLicensePlate(),bicycle.getRentCost(),getCost());
     }
+
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
 }

@@ -92,7 +92,7 @@ public class Menu {
 
                             check = true;
                         } catch (Exception e) {
-                            System.out.println(ANSI_RED+" \uD83C\uDD98 !chỉ được nhập số !"+ ANSI_RESET);
+                            System.out.println(ANSI_RED+" \uD83C\uDD98 !Chỉ được nhập số !"+ ANSI_RESET);
                             sc.nextLine();
                         }
                     }
@@ -195,7 +195,7 @@ public class Menu {
                     }
 
                     receiptManage.deleteReceipt(id3);
-                    System.out.println("-----------------XÓA THÀNH CÔNG---------------");
+                    System.out.println(ANSI_BLUE + "-----------------XÓA THÀNH CÔNG---------------"+ ANSI_RESET);
                     break;
                 case 6:
                     receiptManage.displayMenuReceipt1();

@@ -63,13 +63,18 @@ public class Bicycle {  //License plate: biển số
         this.rentCost = rentCost;
     }
 
-
     @Override
     public String toString() {
-        System.out.printf("\"| %-10s| %-10s| %-10s| %-10s| %-10s|\n\"", "ID", "BIỂN SỐ", " MÀU SẮC", "TRẠNG THÁI", "GIÁ/GIỜ");
-        System.out.println("-------------------------------------------------------------");
+        System.out.printf(ANSI_BLUE+"\"| %-10s| %-10s| %-10s| %-10s| %-10s|\n\"", "ID", "BIỂN SỐ", " MÀU SẮC", "TRẠNG THÁI", "GIÁ/GIỜ"+ANSI_RESET);
+        System.out.println(ANSI_BLUE+"-------------------------------------------------------------"+ANSI_RESET);
         return String.format("\"| %-10s| %-10s| %-10s| %-10s| %-10s|\n\"",id, licensePlate,color,status,rentCost);
     }
 
+
+
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
 }
