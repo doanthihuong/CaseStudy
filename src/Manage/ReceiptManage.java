@@ -12,7 +12,7 @@ public class ReceiptManage {
 
     private int receiptNumber = 0;
 
-        public ReceiptManage() throws FileNotFoundException {
+        public ReceiptManage() throws Exception {
         receiptList = WriteReadToFile.readFileReceipt("src\\receipt-Manage.csv",receiptList);
     }
 

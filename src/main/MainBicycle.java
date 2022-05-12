@@ -277,8 +277,8 @@ public class MainBicycle {
                         break;
 
                     case 10:
-                        bicycleManage.displayMenuReceipt();
 //                        bicycleManage.displayMenuReceipt();
+                        menu.menuReceipt();
                         System.out.println("\uD83D\uDC49 Nhập lựa chọn tiếp theo của bạn");
                         break;
                     case 11:

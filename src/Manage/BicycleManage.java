@@ -73,10 +73,8 @@ public class BicycleManage {
 
     public void edit(int id, Bicycle bicycle) throws FileNotFoundException {
         int index = findIndexById(id);
-//        if (index != -1){
         bicycleList.set(index, bicycle);
         WriteReadToFile.writeToFile(bicycleList);
-//        }
     }
 
     public void delete(int id) throws FileNotFoundException {
@@ -176,9 +174,8 @@ public class BicycleManage {
         System.out.println("                               *-10 - Xem menu hóa đơn                                 =*");
         System.out.println("                               *-11 - Xem lại danh sách Menu                           =*");
         System.out.println("                               *-12 - Thoát                                            =*");
-        System.out.println("                               *-                 \uD83D\uDC49 \uD83D\uDC49 Mời nhập lựa chọn của bạn       =*");
+        System.out.println("                               *-             \uD83D\uDC49 \uD83D\uDC49 Mời nhập lựa chọn của bạn       =*");
         System.out.println("                               =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
-
     }
 
     public void displayMenuReceipt() {
@@ -188,10 +185,10 @@ public class BicycleManage {
         System.out.println("                                    *-2 - Thêm hóa đơn                                     =*");
         System.out.println("                                    *-3 - Sửa thông tin hóa đơn theo số CMND của khách     =*");
         System.out.println("                                    *-4 - Tính tiền hóa đơn - Xóa luôn hóa đơn             =*");
-        System.out.println("                                    *-5 - Xuất hoá đơn(xuất file csv)                      =*");
-        System.out.println("                                    *-6 - Xem lại Menu!                                    =*");
+        System.out.println("                                    *-5 - Xuất hoá đơn   1                                 =*");
+        System.out.println("                                    *-6 - Xem lại MENU CHÍNH!                              =*");
         System.out.println("                                    *-7 - Thoát                                            =*");
-        System.out.println("                                    *-                \uD83D\uDC49mời nhập lựa chọn của bạn           =*");
+        System.out.println("                                    *-           \uD83D\uDC49mời nhập lựa chọn của bạn     =*");
         System.out.println("                                    *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
     }
 

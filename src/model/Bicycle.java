@@ -10,6 +10,12 @@ public class Bicycle {  //License plate: biển số
     public Bicycle() {
     }
 
+    public Bicycle(int id, String licensePlate, int rentCost) {
+        this.id = id;
+        this.licensePlate = licensePlate;
+        this.rentCost = rentCost;
+    }
+
     public Bicycle(int id, String licensePlate, String color, String status, int rentCost) {
         this.id = id;
         this.licensePlate = licensePlate;

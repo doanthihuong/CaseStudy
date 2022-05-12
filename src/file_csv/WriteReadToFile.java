@@ -46,27 +46,37 @@ public class WriteReadToFile {
     public static void writeToFileReceipt(List<Receipt>receiptList) throws FileNotFoundException{
         File file1 =new File("src\\receipt-Manage.csv");
         PrintWriter printWriter1 = new PrintWriter(file1);
-        String str = "Identity,Tên,Thời gian mượn,Thời gian trả,Giá Thuê/giờ ,ID Xe thuê,Biển số,Giá/giờ,Chi Phí";
+        String str = "Identity,Tên,Thời gian mượn,Thời gian trả,ID Xe thuê,Biển số,Giá/giờ,Chi Phí\n";
         for (Receipt i:receiptList) {
-            str+= i.getIdentity()+","+i.getName()+","+i.getBorrowedTime()+","+i.getPayTime()+","+ i.getBicycle().getId()+","+i.getBicycle().getLicensePlate()+","+i.getBicycle().getRentCost()+","+i.getCost();
+            str+= i.getIdentity()+","
+                    +i.getName()+","
+                    +i.getBorrowedTime()+","
+                    +i.getPayTime()+","
+                    + i.getBicycle().getId()+","
+                    +i.getBicycle().getLicensePlate()+","
+                    +i.getBicycle().getRentCost()+","
+                    +i.getCost() + "\n";
         }
         printWriter1.write(str);
         printWriter1.close();
     }
     // doc file
-    public static List<Receipt> readFileReceipt(String path, List<Receipt> receiptList) throws FileNotFoundException {
+    public static List<Receipt> readFileReceipt(String path, List<Receipt> receiptList) throws Exception {
         FileReader file1 = new FileReader(path);
         Scanner sc = new Scanner(file1);
-        if (sc.nextLine() != null){
+
             while (sc.hasNext()) {
+                if (sc.nextLine() != null){
                 String a = sc.nextLine();
                 String[] value = a.split(",");
-//                receiptList.add(new Receipt((Integer.parseInt(value[0]), value[1], Double.parseDouble(value[2]), Double.parseDouble(value[3]),Integer.parseInt(value[4]),value[5],Double.parseDouble(value[6]),Double.parseDouble(value[7])));
-            }
+                Bicycle bicycle = new Bicycle(Integer.parseInt(value[5]), value[6], Integer.parseInt(value[7]) );
+                receiptList.add(new Receipt(Integer.parseInt(value[0]), value[1], Double.parseDouble(value[2]), Double.parseDouble(value[3]),Integer.parseInt(value[4]), bicycle));
+            } else {
+                    throw new Exception();
+                }
             sc.close();
-        } else {
-            throw new FileNotFoundException();
         }
+
         return receiptList;
     }
 }

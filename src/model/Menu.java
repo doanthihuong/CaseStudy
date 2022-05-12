@@ -56,7 +56,7 @@ public class Menu {
                     break;
             }
     }
-    public void menuReceipt() throws FileNotFoundException {
+    public void menuReceipt() throws Exception {
         ReceiptManage receiptManage = new ReceiptManage();
         BicycleManage bicycleManage = new BicycleManage();
         Date now = new Date();

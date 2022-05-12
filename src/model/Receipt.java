@@ -12,6 +12,15 @@ public class Receipt {//borrowed time : thời gian thuê
     public Receipt() {
     }
 
+    public Receipt(int identity, String name, double borrowedTime, double payTime, double cost, Bicycle bicycle) {
+        this.identity = identity;
+        this.name = name;
+        this.borrowedTime = borrowedTime;
+        this.payTime = payTime;
+        this.cost = cost;
+        this.bicycle = bicycle;
+    }
+
     public Receipt(int identity, String name, double borrowedTime, double payTime, Bicycle bicycle) {
         this.identity = identity;
         this.name = name;
