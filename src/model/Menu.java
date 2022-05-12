@@ -57,9 +57,12 @@ public class Menu {
             }
     }
     public void menuReceipt() throws Exception {
+        System.out.println("goi MenuRêcipt");
         ReceiptManage receiptManage = new ReceiptManage();
+        System.out.println("xuong day khong");
         BicycleManage bicycleManage = new BicycleManage();
-        Date now = new Date();
+        System.out.println("receiptManage"+receiptManage);
+        System.out.println("bicycleManage"+bicycleManage);
         boolean check;
         int choice = -1;
         receiptManage.displayMenuReceipt1();

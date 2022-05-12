@@ -5,12 +5,12 @@ public class Bicycle {  //License plate: biển số
     private String licensePlate;
     private String color;
     private String status;
-    private int rentCost;
+    private double rentCost;
 
     public Bicycle() {
     }
 
-    public Bicycle(int id, String licensePlate, int rentCost) {
+    public Bicycle(int id, String licensePlate,double rentCost) {
         this.id = id;
         this.licensePlate = licensePlate;
         this.rentCost = rentCost;
@@ -59,7 +59,7 @@ public class Bicycle {  //License plate: biển số
         return rentCost;
     }
 
-    public void setRentCost(int rentCost) {
+    public void setRentCost(double rentCost) {
         this.rentCost = rentCost;
     }
 

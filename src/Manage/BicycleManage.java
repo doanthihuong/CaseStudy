@@ -12,7 +12,7 @@ public class BicycleManage {
     public static final String READY = "READY";
     public static final String NOT_NOW = "NOT NOW";
     public BicycleManage() throws FileNotFoundException {
-        bicycleList = WriteReadToFile.readFile("src\\bicycle-Manage.csv", bicycleList);
+        WriteReadToFile.readFile("src\\bicycle-Manage.csv", bicycleList);
     }
 
     public void add(Bicycle bicycle) throws FileNotFoundException {
@@ -167,7 +167,7 @@ public class BicycleManage {
         System.out.println("                               *-8 - Tìm xe theo id xe (hiển thị xe duy nhất)          =*");
         System.out.println("                               *-9 - Tìm xe theo giá cho thuê                          =*");
         System.out.println("                               *-10 - Xem menu hóa đơn                                 =*");
-        System.out.println("                               *-11 - Xem lại danh sách Menu                           =*");
+        System.out.println("                               *-11 - Xem lại danh MENU CHÍNH                          =*");
         System.out.println("                               *-12 - Thoát                                            =*");
         System.out.println("                               *-                \uD83D\uDC49 \uD83D\uDC49 Mời nhập lựa chọn của bạn       =*");
         System.out.println("                               =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
