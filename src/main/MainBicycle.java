@@ -1,6 +1,7 @@
 package main;
 
 import Manage.BicycleManage;
+import file_csv.WriteReadToFile;
 import model.Bicycle;
 import model.Menu;
 
@@ -15,6 +16,7 @@ public class MainBicycle {
         Menu menu = new Menu();
         menu.menuMain();
         BicycleManage bicycleManage = new BicycleManage();
+        WriteReadToFile writeReadToFile = new WriteReadToFile();
         try (Scanner sc = new Scanner(System.in)) {
             int choice = -1;
             boolean check;
@@ -80,7 +82,7 @@ public class MainBicycle {
                                 break;
                             }
                         }
-                        while (choice1 <1 ||choice1>2);
+                        while (choice1 < 1 || choice1 > 2);
                         check = true;
                         int rentCost = -1;
                         check = false;
@@ -101,69 +103,64 @@ public class MainBicycle {
                         System.out.println("\uD83D\uDC49 Nhập lựa chọn tiếp theo của bạn");
                         break;
                     case 3:
-                        int id1 = -1;
                         check = false;
                         while (!check) {
-                            System.out.println("\uD83D\uDC49 Nhập id xe muốn sửa");
+                            System.out.println("\uD83D\uDC49 Nhập id muốn sửa");
                             try {
-                                id1 = sc.nextInt();
-                                check = true;
+                                int id1 = sc.nextInt();
+                                int index = bicycleManage.findIndexById(id1);
+                                if (index != -1) {
+                                    System.out.println("\uD83D\uDC49 Nhập biển số mới: ");
+                                    sc.nextLine();
+                                    licensePlate = sc.nextLine();
+                                    System.out.println("\uD83D\uDC49 Nhập màu xe mới: ");
+                                    color = sc.nextLine();
+                                    System.out.println("\uD83D\uDC49 Nhập trạng thái xe:\n1. SẴN SÀNG\t\t\t2. KHÔNG PHẢI BÂY GIỜ");
+                                    String status1 = "";
+                                    int choice2 = -1;
+                                    check = false;
+                                    do {
+                                        System.out.println("\uD83D\uDC49 Chọn trạng thái 1 hoặc 2: ");
+                                        try {
+                                            choice2 = sc.nextInt();
+                                        } catch (InputMismatchException e) {
+                                            System.out.println("\uD83C\uDD98 Chỉ nhập số");
+                                            sc.nextLine();
+                                        }
+                                        if (choice2 == 1) {
+                                            status1 = "READY";
+                                            break;
+                                        } else if (choice2 == 2) {
+                                            status1 = "NOT NOW";
+                                            break;
+                                        }
+                                    } while (choice2 != 3);
+                                    int rentCost1 = -1;
+                                    check = false;
+                                    while (!check) {
+                                        System.out.println("\uD83D\uDC49 Nhập giá cho thuê/1 giờ)");
+                                        try {
+                                            rentCost1 = sc.nextInt();
+                                            check = true;
+                                        } catch (Exception e) {
+                                            System.out.println("\uD83C\uDD98 Chỉ được nhập số !");
+                                            sc.nextLine();
+                                        }
+                                    }
+                                    Bicycle bicycle1 = new Bicycle(id1, licensePlate, color, status1, rentCost1);
+                                    bicycleManage.edit(id1, bicycle1);
+                                    WriteReadToFile.writeToFile(bicycleManage.getBicycleList());
+                                    System.out.println("ĐÃ SỬA XONG!!!");
+                                } else {
+                                    System.out.println("Không tồn tại xe có ID = " + id1 + " trong danh sách!!!");
+                                }
                             } catch (Exception e) {
                                 System.out.println("\uD83C\uDD98  Chỉ được nhập số !");
                                 sc.nextLine();
                             }
                         }
-                        int id2 = -1;
-                        check = false;
-                        while (!check) {
-                            System.out.println("\uD83D\uDC49 Nhập ID mới");
-                            try {
-                                id1 = sc.nextInt();
-                                check = true;
-                            } catch (Exception e) {
-                                System.out.println("\uD83C\uDD98  Chỉ được nhập số !");
-                                sc.nextLine();
-                            }
-                        }
-                        System.out.println("\uD83D\uDC49 Nhập biển số mới: ");
-                        licensePlate = sc.nextLine();
-                        sc.nextLine();
-                        System.out.println("\uD83D\uDC49 Nhập màu xe mới: ");
-                        color = sc.nextLine();
-                        System.out.println("\uD83D\uDC49 Nhập trạng thái xe:\n1. SẴN SÀNG\t\t\t2. KHÔNG PHẢI BÂY GIỜ");
-                        String status1 = "";
-                        int choice2 = -1;
-                        check = false;
-                        do {
-                            System.out.println("\uD83D\uDC49 Chọn trạng thái 1 hoặc 2: ");
-                            try {
-                                choice2 = sc.nextInt();
-                            } catch (InputMismatchException e) {
-                                System.out.println("\uD83C\uDD98 Chỉ nhập số");
-                                sc.nextLine();
-                            }
-                            if (choice2 == 1) {
-                                status1 = "READY";
-                                break;
-                            } else if (choice2 == 2) {
-                                status1 = "NOT NOW";
-                                break;
-                            }
-                        } while (choice2 != 3);
-                        int rentCost1 = -1;
-                        check = false;
-                        while (!check) {
-                            System.out.println("\uD83D\uDC49 Nhập giá cho thuê/1 giờ)");
-                            try {
-                                rentCost1 = sc.nextInt();
-                                check = true;
-                            } catch (Exception e) {
-                                System.out.println("\uD83C\uDD98 Chỉ được nhập số !");
-                                sc.nextLine();
-                            }
-                        }
-                        Bicycle bicycle1 = new Bicycle(id2, licensePlate, color, status1, rentCost1);
-                        bicycleManage.edit(id1, bicycle1);
+                        System.out.println("\uD83D\uDC49 Nhập giá cho thuê/1 giờ)");
+
                         System.out.println("\uD83D\uDC49 Nhập lựa chọn tiếp theo của bạn");
                         break;
                     case 4:
@@ -191,7 +188,6 @@ public class MainBicycle {
 
                         System.out.println("\uD83D\uDC49 Nhập danh sách cần tìm: \n1.DANH SÁCH XE ĐÃ CHO THUÊ\t\t\t2.DANH SÁCH XE SẴN SÀNG");
                         int choice3 = -1;
-                        check = false;
                         do {
                             System.out.println("\uD83D\uDC49 Chọn lựa chọn 1 hoặc 2: ");
                             try {
@@ -213,41 +209,36 @@ public class MainBicycle {
                         System.out.println("\uD83D\uDC49 Nhập lựa chọn tiếp theo của bạn");
                         break;
                     case 7:
-                        int idOfUpdate = -1;
                         check = false;
                         while (!check) {
-                            System.out.println("\uD83D\uDC49 Nhập id xe muốn cập nhật trạng thái");
                             try {
-                                idOfUpdate = sc.nextInt();
-                                check = true;
-                                bicycleManage.findById(idOfUpdate);
-                            } catch (Exception e) {
-                                System.out.println(" \uD83C\uDD98 chỉ được nhập số !");
+                                System.out.println("\uD83D\uDC49 Nhập ID xe muốn cập nhật trạng thái");
+                                int id4 = sc.nextInt();
+                                int idOfupdate = bicycleManage.findIndexById(id4);
+                                while (idOfupdate != -1) {
+                                    bicycleManage.findById(id4);
+                                    System.out.println("\uD83D\uDC49 UPDATE TRẠNG THÁI: \n1.READY to NOT_NOW\t\t\t2.NOT_NOW XE to READY");
+                                    int choice4;
+                                    do {
+                                        System.out.println("\uD83D\uDC49 Chọn lựa chọn 1 hoặc 2: ");
+                                        choice4 = sc.nextInt();
+                                    }
+                                    while (choice4 != 1 && choice4 != 2);
+                                    switch (choice4) {
+                                        case 1:
+                                            bicycleManage.emptyToBuSy(id4);
+                                            break;
+                                        case 2:
+                                            bicycleManage.busyToEmpty(id4);
+                                            break;
+                                    }
+                                }
+                            } catch (InputMismatchException e) {
+                                System.out.println("\uD83C\uDD98  Chỉ được nhập số !");
                                 sc.nextLine();
                             }
                         }
-                        System.out.println("\uD83D\uDC49 UPDATE TRẠNG THÁI: \n1.READY to NOT_NOW\t\t\t2.NOT_NOW XE to READY");
-                        int choice4 = -2;
-                        do {
-                            System.out.println("\uD83D\uDC49 Chọn lựa chọn 1 hoặc 2: ");
-                            try {
-                                choice4 = sc.nextInt();
-                            } catch (InputMismatchException e) {
-                                System.out.println("\uD83D\uDC49 Vui lòng chỉ nhập số");
-                                sc.nextLine();
-                            }
-                            if (choice4 == 1) {
-                                System.out.println("Tính năng đang bảo trì");
-//                                bicycleManage.emptyToBuSy(idOfUpdate);
-                                break;
-                            } else if (choice4 == 2) {
-                                System.out.println("Tính năng đang bảo trì");
-//                                bicycleManage.busyToEmpty(idOfUpdate);
-                                break;
-                            }
-                        } while (choice4!=3);
-
-                        System.out.println( "\uD83D\uDC49 Mời nhập lựa chọn tiếp theo");
+                        System.out.println("\uD83D\uDC49 Mời nhập lựa chọn tiếp theo");
                         break;
                     case 8:
                         int id4 = -1;
@@ -281,15 +272,14 @@ public class MainBicycle {
                             }
                         }
 
-    //                    bicycleManage.findByRentCost(cost);
+                        //                    bicycleManage.findByRentCost(cost);
                         System.out.println("\uD83D\uDC49 Nhập lựa chọn tiếp theo của bạn");
                         break;
 
                     case 10:
-
-                        menu.menuReceipt();
                         bicycleManage.displayMenuReceipt();
-//
+//                        bicycleManage.displayMenuReceipt();
+                        System.out.println("\uD83D\uDC49 Nhập lựa chọn tiếp theo của bạn");
                         break;
                     case 11:
                         bicycleManage.displayMenu();
@@ -303,6 +293,8 @@ public class MainBicycle {
 
                 }
             } while (choice >= 1 && choice <= 12);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
